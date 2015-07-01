@@ -1,0 +1,25 @@
+{% extends "mercury2/dashboard.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+
+{% block page_content %}
+
+<ul> 
+{% for station in substation %}
+	<li> {{ station.title }} </li>
+	<li> {{ station.slug }} </li>
+	<li> Longitude: {{ station.longitude }}, Latitude: {{ station.latitude }}</li>
+	<li> Altitude: {{station.altitude}} </li>
+{% endfor %}
+</ul>
+
+<form action="." method="POST">
+	<table>
+		{{ form.as_table }}
+	</table>
+	<p><input type="submit" value="Submit"></p>
+</form>
+
+
+{% endblock %}

@@ -14,6 +14,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from jsonfield import JSONField
 
+
 class Substation(models.Model):
   """ The Substation model represents Mercury2 Hardware Manager installations.
 

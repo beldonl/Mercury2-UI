@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Ground station specific settings (override in local_settings.py)
 SECRET_KEY = 'your-super-duper-secret-key'
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Detroit'
@@ -20,9 +20,19 @@ SITE_ID = 1
 AUTH_USER_MODEL = 'operators.StationUser'
 ROOT_URLCONF = 'mercury2.urls'
 WSGI_APPLICATION = 'mercury2.wsgi.application'
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
+
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'mercury2',
+    'USER': 'Beldon2',
+    'PASSWORD': 'aurora13',
+    'HOST': 'localhost'
+  }
+}
 
 INSTALLED_APPS = (
   # Mercury2 applications
@@ -85,6 +95,9 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_MIN_LENGTH = 3
+
+# To print onto console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Logging configuration
 LOGGING = {
