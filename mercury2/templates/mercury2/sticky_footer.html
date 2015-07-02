@@ -18,11 +18,10 @@
       <div class="pure-u-1 pure-u-md-1-2">
         <ul class="footer_links">
           {% if user.is_authenticated %}
-              <li><a href="#">{% trans "Ground Station Overview" %}</a></li>
+              <li><a href="/gs_overview">{% trans "Ground Station Overview" %}</a></li>
               <li><a href="#">{% trans "Contact Us" %}</a></li>
               <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
           {% else %}
-              <li><a href="#">{% trans "Ground Station Overview" %}</a></li>
               <li><a href="#">{% trans "Contact Us" %}</a></li>
               <li><a href="/users/login">{% trans "Login/Create Account" %}</a></li>
           {% endif %}
