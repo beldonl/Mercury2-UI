@@ -1,26 +1,20 @@
 {% extends "mercury2/dashboard.html" %}
+{% from substations.models import substations}
 {% load staticfiles %}
 {% load i18n %}
 
 {% block page_content %}
 
-<form action="." method="POST">
-	{% csrf_token %}
-	<table>
-		{{ form.as_table }}
-	</table>
-	<p><input type="submit" value="See Details"></p>
-</form>
-
 <ul> 
-	<li> {{ current.title }} </li>
-	<li> {{ current.slug }} </li>
-	<li> Longitude: {{ current.longitude }}, Latitude: {{ current.latitude }}</li>
-	<li> Altitude: {{current.altitude}} </li>
+{% for station in substations %}
+	<li> {{ station.title }} </li>
+	<li> {{ station.slug }} </li>
+	<li> Longitude: {{ station.longitude }}, Latitude: {{ station.latitude }}</li>
+	<li> Altitude: {{station.altitude}} </li>
 
 	<br>
-		
-	<!-- Google Maps --> 
+
+	<!-- Google Maps -->
 	<style>
       #map-canvas {
         width: 500px;
@@ -32,7 +26,7 @@
       function initialize() {
         var mapCanvas = document.getElementById('map-canvas');
         var mapOptions = {
-          center: new google.maps.LatLng({{current.latitude}}, {{current.longitude}}),
+          center: new google.maps.LatLng({{station.latitude}}, {{station.longitude}}),
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
@@ -41,6 +35,8 @@
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 	<div id="map-canvas"></div>
+
+{% endfor %}
 </ul>  
 
 <h3>Pipelines</h3>
@@ -49,6 +45,7 @@
 	<li> {{ pipeline.title }} </li>
 	<li> {{ pipeline.pipeline_id }} </li>
 	<li> Description: {{ pipeline.description }} </li>
+	<li> Substation: {{ pipeline.related_substation }}
 	<br>
 {% endfor %}
 </ul>  
@@ -59,11 +56,18 @@
 	<li> {{ device.title }} </li>
 	<li> {{ device.device_id }} </li>
 	<li> Description: {{ device.description }} </li>
+	<li> Substation: {{ device }} </li>
 	<br>
 {% endfor %}
 </ul>  
 
-
+<form action="." method="POST">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<p><input type="submit" value="Submit"></p>
+</form>
 
 
 {% endblock %}

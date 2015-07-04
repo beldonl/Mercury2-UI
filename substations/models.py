@@ -12,6 +12,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
+
 from jsonfield import JSONField
 
 
@@ -165,7 +166,8 @@ class Device(models.Model):
                             editable=False)
 
   def __unicode__(self):
-         return self.title
+         return self.substation.title
+ 
 
   class Meta:
     verbose_name = _('device')

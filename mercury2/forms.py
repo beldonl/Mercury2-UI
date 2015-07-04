@@ -16,9 +16,7 @@ class addPipeLine(forms.Form):
 	title = forms.CharField()
 	pipeline_id = forms.CharField()
 	description = forms.CharField()
-
 	substation = forms.ModelChoiceField(queryset=Substation.objects.all())
-
 	devices = forms.ModelMultipleChoiceField(queryset =Device.objects.all())
 
 class addDevice(forms.Form):
@@ -26,3 +24,6 @@ class addDevice(forms.Form):
 	device_id = forms.CharField()
 	description = forms.CharField()
 	substation = forms.ModelChoiceField(queryset=Substation.objects.all())
+
+class GS_select(forms.Form):
+	selection = forms.ModelChoiceField(queryset=Substation.objects.all())
