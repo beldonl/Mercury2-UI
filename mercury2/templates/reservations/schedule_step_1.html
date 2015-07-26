@@ -1,0 +1,77 @@
+{% extends "mercury2/dashboard.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block page_content %}
+
+<h1>Step 1: Select Substation and Hardware Pipeline</h1>
+<p>To get started, select a substation and hardware pipeline or load one of your previous reservations (in the future) </p>
+
+<h2>Reservation for: {{ user }}</h2>
+
+<form action="." method="POST">
+	{% csrf_token %}
+	<table>
+	{{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.substation.errors }}
+        <label for="id_subject">Substation:</label>
+        {{ form.substation }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ form.pipeline.errors }}
+        <br>
+        <label for="id_message">Pipeline:</label>
+        {{ form2.pipeline }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ form3.start_date.errors }}
+        <br>
+        <label for="id_sender">Reservation Start Date:</label>
+        {{ form3.start_date }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ form3.start_time.errors }}
+        <br>
+        <label for="id_cc_myself">Reservation Start Time</label>
+        {{ form3.start_time }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ form3.end_date.errors }}
+        <br>
+        <label for="id_cc_myself">Reservation End Date</label>
+        {{ form3.end_date }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ form3.end_time.errors }}
+        <br>
+        <label for="id_cc_myself">Reservation End Time</label>
+        {{ form3.end_time }}
+    </div>
+    <br>
+</table>
+    <p><input type="submit" value="Continue" /></p>
+</form>
+
+{% if form3.errors %}
+    <!-- {% for field in form3 %}
+        {% for error in field.errors %}
+            <div class="alert alert-error">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %} -->
+    <!-- {% for error in form3.non_field_errors %}
+        <div class="alert alert-error">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %} -->
+{% endif %}
+
+
+{% endblock %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
   'substations',
   'administration',
   'events',
+  'schedule',
 
   # Django and external applications
   'allauth',
@@ -54,6 +55,7 @@ INSTALLED_APPS = (
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
+  'django.contrib.formtools',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -79,7 +81,7 @@ AUTHENTICATION_BACKENDS = (
   "django.contrib.auth.backends.ModelBackend",
   "allauth.account.auth_backends.AuthenticationBackend"
 )
-
+TEMPLATE_STRING_IF_INVALID = "%s"
 # Internationalization options
 LOCALE_PATHS = (
   os.path.join(os.path.dirname(__file__), "locale"),

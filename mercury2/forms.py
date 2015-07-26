@@ -27,3 +27,5 @@ class addDevice(forms.Form):
 
 class GS_select(forms.Form):
 	selection = forms.ModelChoiceField(queryset=Substation.objects.all())
+
+

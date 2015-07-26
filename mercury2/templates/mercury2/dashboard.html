@@ -17,7 +17,7 @@
         <div class="right">
           <ul class="header_links">
             {% if user.is_authenticated %}
-              <li><a href="#">{% trans "Create Reservation" %}</a></li>
+              <li><a href="{% url 'reserve' %}">{% trans "Create Reservation" %}</a></li>
               <li><a href="#">{% trans "Your Account" %}</a></li>
               <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
             {% else %}
@@ -45,4 +45,8 @@
 {% endblock %}
 
 {% block page_content %}{% endblock %}
+
+
+
+
 {% endblock %}

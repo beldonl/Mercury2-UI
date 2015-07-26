@@ -81,10 +81,11 @@ class Substation(models.Model):
                             editable=False)
 
   def __unicode__(self):
-         return self.title
+      return self.title
+
 
   class Meta:
-    verbose_name = _('substations')
+    verbose_name = _('substation')
     verbose_name_plural = _('substations')
 
 class Pipeline(models.Model):
@@ -121,8 +122,8 @@ class Pipeline(models.Model):
                     blank=True,
                     editable=False)
 
-  def __unicode__(self):
-         return self.title
+  def __str__(self):
+      return self.title
 
   class Meta:
     verbose_name = _('pipeline')
@@ -166,7 +167,7 @@ class Device(models.Model):
                             editable=False)
 
   def __unicode__(self):
-         return self.substation.title
+         return self.title
  
 
   class Meta:
@@ -205,8 +206,9 @@ class Command(models.Model):
   destination = GenericForeignKey('content_type', 'object_id')
 
   def __unicode__(self):
-         return self.title
+      return self.title
 
   class Meta:
     verbose_name = _('command')
     verbose_name_plural = _('commands')
+

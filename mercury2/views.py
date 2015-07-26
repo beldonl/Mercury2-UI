@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.db.models import F
 from forms import *
 from substations.models import *
+from schedule.models import *
 
 
 def home(request):
@@ -20,7 +21,7 @@ def dashboard(request):
 	""" This view returns the dashboard of the Mercury2 with ground station/substation overview 
 	"""
 
-	return render_to_response('mercury2/dashboard.html', {'user': request.user,}, context_instance=RequestContext(request)) 
+	return render_to_response('mercury2/dashboard.html', {'user': request.user, 'reservations': Reservation.objects.filter(operator = request.user), } , context_instance=RequestContext(request)) 
 
 def gs_edit(request):
 	""" This view returns the ground station overview page , allows users to add new substation for now"""
@@ -80,6 +81,16 @@ def gs_overview(request):
 		form = GS_select()
 	return render_to_response('mercury2/gs_overview.html',{'user': request.user, 'form': form, 'substations': Substation.objects.values(), 
 		'pipelines': Pipeline.objects.values(), 'Devices': Device.objects.values(), }, context_instance=RequestContext(request))
+
+
+
+
+
+
+
+
+
+
 
 
 
