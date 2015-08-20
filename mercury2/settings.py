@@ -29,13 +29,14 @@ DATABASES = {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'mercury2',
     'USER': 'Beldon2',
-    'PASSWORD': 'aurora13',
+    'PASSWORD': 'mercury2',
     'HOST': 'localhost'
   }
 }
 
 INSTALLED_APPS = (
   # Mercury2 applications
+  'api',
   'mercury2',
   'operators',
   'substations',
@@ -56,6 +57,7 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'django.contrib.formtools',
+  'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

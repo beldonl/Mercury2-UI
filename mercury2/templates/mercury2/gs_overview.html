@@ -1,9 +1,12 @@
-{% extends "mercury2/dashboard.html" %}
+{% extends "mercury2/baseline.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
 {% block page_content %}
 
+<b><a href="{% url 'gs_edit' %}">{% trans "Add Substation/Pipeline/Device" %}</a></b>
+
+<h1> Select the substation you want details of </h1>
 <form action="." method="POST">
 	{% csrf_token %}
 	<table>
@@ -20,7 +23,10 @@
 
 	<br>
 		
-	<!-- Google Maps --> 
+	
+</ul> 
+
+<!-- Google Maps --> 
 	<style>
       #map-canvas {
         width: 500px;
@@ -40,8 +46,7 @@
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-	<div id="map-canvas"></div>
-</ul>  
+	<div id="map-canvas"></div> 
 
 <h3>Pipelines</h3>
 <ul> 

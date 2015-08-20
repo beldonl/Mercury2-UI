@@ -4,6 +4,15 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.db.models import Q
 from models import *
 
+TIME_SELECT_CHOICES = (
+	('pass_times', 'Satellite Pass Times'),
+	('set_own_time', 'Set Own Times'),)
+
+PASS_CHOICES = ()
+
+class time_version_select(forms.Form):
+	version = forms.ChoiceField(choices = TIME_SELECT_CHOICES)
+
 class substation_select(forms.Form):
 	substation = forms.ModelChoiceField(queryset=Substation.objects.all())
 
@@ -89,5 +98,9 @@ class reservation_time_select(forms.Form):
 					self._errors['End_Time_Error'] = 'End time is in middle of future reservation'
 				return False
 		return True
+
+class pass_select(forms.Form):
+	orbit = forms.ChoiceField(choices = PASS_CHOICES)
+
 
 

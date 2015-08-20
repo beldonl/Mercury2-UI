@@ -1,0 +1,73 @@
+{% extends "mercury2/dashboard.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block page_content %}
+
+<h1>Step 2: Select Pass Times</h1>
+<p>Select the pass for the reservation</p>
+
+<h2>Reservation for: {{ user }}</h2>
+
+<form action="." method="POST">
+	{% csrf_token %}
+	<table>
+   {{ satellite_form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ satellite_form.satellite.errors }}
+        <label for="id_subject">Satellite:</label>
+        {{ satellite_form.satellite }}
+    </div>
+    <br>
+    {{ pass_form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ pass_form.pass_count.errors }}
+        <label for="id_subject">Pass Count:</label>
+        {{ pass_form.pass_count }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ pass_form.ground_station.errors }}
+        <label for="id_subject">Ground Station:</label>
+        {{ pass_form.ground_station}}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ pass_form.min_elevation.errors }}
+        <label for="id_subject">Minimum Elevation:</label>
+        {{ pass_form.min_elevation }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ pass_form.show_all_passes.errors }}
+        <label for="id_subject">Show all passes?</label>
+        {{ pass_form.show_all_passes }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        {{ pass_select_form.orbit.errors }}
+        <label for="id_subject">Orbit? (Press get pass times if blank)</label>
+        {{ pass_select_form.orbit }}
+    </div>
+    <br>
+</table>
+    <p><input type="submit" value="Get Pass Times/Pick Orbit" /></p>
+</form>
+<br>
+<br>
+<br>
+<h3> Fetched data </h3>
+<br>
+<!-- For now, just dump JSON/data onto here -->
+<table styke="width:75%">
+{% for pass in passes %}
+    <tr>
+        <td>{{pass.0}}<td>
+        <td>{{pass.1}}<td>
+        <td>{{pass.2}}<td>
+        <td>{{pass.3}}<td>
+    </tr>
+{% endfor %}
+
+</table>
+{% endblock %}
